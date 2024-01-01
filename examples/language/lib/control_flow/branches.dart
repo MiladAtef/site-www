@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, dead_code, unreachable_switch_case
 
 class Point {
   final int x;
@@ -9,6 +9,21 @@ class Point {
 
 dynamic miscDeclAnalyzedButNotTested() {
   var pair = [1, 2];
+
+  {
+    bool isRaining() => true;
+    bool isSnowing() => true;
+    dynamic car, you;
+    // #docregion if-else
+    if (isRaining()) {
+      you.bringRainCoat();
+    } else if (isSnowing()) {
+      you.wearJacket();
+    } else {
+      car.putTopDown();
+    }
+    // #enddocregion if-else
+  }
 
   {
     // #docregion if-case
@@ -116,7 +131,7 @@ dynamic miscDeclAnalyzedButNotTested() {
   {
     bool? nullableBool = false;
     // #docregion exh-bool
-    // Non-exhaustive switch on bool?, missing case to match null possiblity:
+    // Non-exhaustive switch on bool?, missing case to match null possibility:
     switch (nullableBool) {
       case true:
         print('yes');
@@ -127,9 +142,14 @@ dynamic miscDeclAnalyzedButNotTested() {
   }
 
   {
+    final pair = (1, 2);
     // #docregion guard
     switch (pair) {
+      case (int a, int b):
+        if (a > b) print('First element greater');
+      // If false, prints nothing and exits the switch.
       case (int a, int b) when a > b:
+        // If false, prints nothing but proceeds to next case.
         print('First element greater');
       case (int a, int b):
         print('First element not greater');

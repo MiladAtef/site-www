@@ -12,11 +12,11 @@ nextpage:
 ## Exceptions
 
 Your Dart code can throw and catch exceptions. Exceptions are errors
-indicating that something unexpected happened. If the exception isn’t
+indicating that something unexpected happened. If the exception isn't
 caught, the [isolate][] that raised the exception is suspended,
 and typically the isolate and its program are terminated.
 
-In contrast to Java, all of Dart’s exceptions are unchecked exceptions.
+In contrast to Java, all of Dart's exceptions are unchecked exceptions.
 Methods don't declare which exceptions they might throw, and you aren't
 required to catch any exceptions.
 
@@ -27,7 +27,7 @@ non-null object—not just Exception and Error objects—as an exception.
 
 ### Throw
 
-Here’s an example of throwing, or *raising*, an exception:
+Here's an example of throwing, or *raising*, an exception:
 
 <?code-excerpt "misc/lib/language_tour/exceptions.dart (throw-FormatException)"?>
 ```dart
@@ -72,7 +72,7 @@ try {
 
 To handle code that can throw more than one type of exception, you can
 specify multiple catch clauses. The first catch clause that matches the
-thrown object’s type handles the exception. If the catch clause does not
+thrown object's type handles the exception. If the catch clause does not
 specify a type, that clause can handle any type of thrown object:
 
 <?code-excerpt "misc/lib/language_tour/exceptions.dart (try-catch)"?>
@@ -166,9 +166,8 @@ try {
 }
 ```
 
-Learn more by reading the
-[Exceptions](/guides/libraries/library-tour#exceptions)
-section of the library tour.
+To learn more, check out the
+[core library exception docs](/libraries/dart-core#exceptions).
 
 ## Assert
 
@@ -199,7 +198,7 @@ assert(urlString.startsWith('https'),
 ```
 
 The first argument to `assert` can be any expression that
-resolves to a boolean value. If the expression’s value
+resolves to a boolean value. If the expression's value
 is true, the assertion succeeds and execution
 continues. If it's false, the assertion fails and an exception (an
 [`AssertionError`][]) is thrown.
@@ -223,7 +222,7 @@ the arguments to `assert` aren't evaluated.
 [`dart run`]: /tools/dart-run
 [`dart compile js`]: /tools/dart-compile#js
 
-[isolate]: /language/concurrency#how-isolates-work
+[isolate]: /language/concurrency
 [`Error`]: {{site.dart-api}}/{{site.data.pkg-vers.SDK.channel}}/dart-core/Error-class.html
 [`Exception`]: {{site.dart-api}}/{{site.data.pkg-vers.SDK.channel}}/dart-core/Exception-class.html
 [`StackTrace`]: {{site.dart-api}}/{{site.data.pkg-vers.SDK.channel}}/dart-core/StackTrace-class.html

@@ -7,10 +7,10 @@ js: [{url: 'https://dartpad.dev/inject_embed.dart.js', defer: true}]
 <?code-excerpt replace="/ *\/\/\s+ignore_for_file:[^\n]+\n//g; /(^|\n)*\/\/\s+ignore:[^\n]+\n/$1/g; /(\n[^\n]+) *\/\/\s+ignore:[^\n]+\n/$1\n/g"?>
 <?code-excerpt plaster="none"?>
 
-This codelab teaches you about Dart’s [null-safe type system](/null-safety).
+This codelab teaches you about Dart's [null-safe type system](/null-safety).
 Dart introduced null safety as an optional setting in Dart 2.12.
 Dart 3 requires null safety.
-With null safety, values can’t be `null` unless you say they can be.
+With null safety, values can't be `null` unless you say they can be.
 
 This codelab covers the following material:
 
@@ -89,10 +89,11 @@ void main() {
 }
 ```
 
-## The null assertion operator (!)
+<a id="the-null-assertion-operator-"></a>
+## The non-null assertion operator (!)
 
 If you're sure an expression with a nullable type doesn't equal `null`,
-you can use the [null assertion operator](/null-safety/understanding-null-safety#null-assertion-operator)
+you can use the [non-null assertion operator][]
 (`!`) to make Dart treat it as non-nullable.
 By adding `!` after the expression,
 you assert two conditions to Dart about the expression:
@@ -105,6 +106,8 @@ you assert two conditions to Dart about the expression:
   This makes the `!` operator _unsafe_.
   Don't use it unless you have no doubt the expression can't equal `null`.
 {{site.alert.end}}
+
+[non-null assertion operator]: /null-safety/understanding-null-safety#non-null-assertion-operator
 
 ### Exercise: Null assertion
 
@@ -139,7 +142,7 @@ You can also use null-aware operators to handle nullable values.
 Sometimes the flow of the program tells you that the value of an
 expression cannot be `null`.
 To force Dart to treat that expression as non-nullable,
-add the [null assertion operator](#the-null-assertion-operator-) (`!`).
+add the [non-null assertion operator](#the-non-null-assertion-operator-) (`!`).
 If the value does equal `null`, using this operator throws an exception.
 
 To handle potential `null` values, use the conditional property access
@@ -353,8 +356,8 @@ as providing an alternative value if the left-hand side is `null`.
 
 Dart's [flow analysis](/null-safety/understanding-null-safety#flow-analysis)
 accounts for nullability.
-Dart treats nullable variables with no ability to contain null values
-as non-nullable variables.
+Dart treats nullable variables and fields
+with no ability to contain null values as non-nullable.
 We call this behavior
 [type promotion](/null-safety/understanding-null-safety#type-promotion-on-null-checks).
 
@@ -544,9 +547,9 @@ void main() {
 Congratulations, you've finished the codelab!
 To learn more, check out some suggestions for where to go next:
 
-- Learn more about null safety
-  -[Overview of null safety](/null-safety).
-  -[Deep dive into understanding null safety](/null-safety/understanding-null-safety).
-- If you want to improve this codelab, check out [issue #3093][].
+* Learn more about null safety
+  * [Overview of null safety](/null-safety).
+  * [Deep dive into understanding null safety](/null-safety/understanding-null-safety).
+* If you want to improve this codelab, check out [issue #3093][].
 
 [issue #3093]: https://github.com/dart-lang/site-www/issues/3093

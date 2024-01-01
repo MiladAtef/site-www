@@ -1,4 +1,4 @@
-FROM ruby:3.2-slim-bullseye@sha256:506427360ecafed78530865257378ce4a287bd004315e5cafdd64690bcb56efe as base
+FROM ruby:3.2-slim-bookworm@sha256:75f884a28c1337d744a42b006d864d3ba161c6b1980d2414910e660d2034b14e as base
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=US/Pacific
@@ -7,6 +7,7 @@ RUN apt update && apt install -yq --no-install-recommends \
       ca-certificates \
       curl \
       git \
+      gnupg \
       lsof \
       make \
       unzip \
@@ -32,24 +33,26 @@ ENV DART_SDK=/usr/lib/dart
 ENV PATH=$DART_SDK/bin:$PATH
 RUN set -eu; \
     case "$(dpkg --print-architecture)_${DART_CHANNEL}" in \
+      # BEGIN dart-sha
       amd64_stable) \
-        DART_SHA256="c4a2c9fb66096680bc99f687343ba9c64cc4f8a9c583c50a71ab8a63339303fc"; \
+        DART_SHA256="7604c091455b7c3e4b3f52a5966b07f4accb657954c54257fe84cddfc77379ae"; \
         SDK_ARCH="x64";; \
       arm64_stable) \
-        DART_SHA256="d275012238a7ad416b819c74f303b152d676a82a97c3cffed01dda2915e38a0c"; \
+        DART_SHA256="5a3084385df7014fea762fbb8cb985364f65a041a1446db6955cdac670cc8038"; \
         SDK_ARCH="arm64";; \
       amd64_beta) \
-        DART_SHA256="1edcf9e1c5be94633fa025614866d49c437322ab3cc759822645287ddb9bfd62"; \
+        DART_SHA256="24fee21a8e378050b0b0611602f674059d5a93bb09a560539857e384f1b83056"; \
         SDK_ARCH="x64";; \
       arm64_beta) \
-        DART_SHA256="63442bd94a4bcb043fccf9f3f22a5ca846fbb3a3933eea84dcfe8502f8f767de"; \
+        DART_SHA256="f86de4ab4f99a2dbdc6a0809acaae40a280fa3cbac340bbdf910cf7f0085dcbb"; \
         SDK_ARCH="arm64";; \
       amd64_dev) \
-        DART_SHA256="913f1d69a0f3fb03d9b3509595ead08ada5d2399a5fc38cb4d62faaded57302f"; \
+        DART_SHA256="439b0c5d0774eccffb09ec84405685eb7d1c4ab0f2207ff6b86add0ed7d8c457"; \
         SDK_ARCH="x64";; \
       arm64_dev) \
-        DART_SHA256="99b75d5497646173fdcd5dc8b482c32c7c316afdda07c649ed46df3b1e1b5889"; \
+        DART_SHA256="c711a28fc49319a4a8b0e004c7542266ab13fd2f093344d326b509d014ef6d79"; \
         SDK_ARCH="arm64";; \
+      # END dart-sha
     esac; \
     SDK="dartsdk-linux-${SDK_ARCH}-release.zip"; \
     BASEURL="https://storage.googleapis.com/dart-archive/channels"; \
@@ -78,21 +81,13 @@ CMD ["./tool/test.sh"]
 
 # ============== NODEJS INSTALL ==============
 FROM dart as node
-RUN set -eu; \
-    NODE_PPA="node_ppa.sh"; \
-    NODE_SHA256=9f6707e20789ff7c1d39a11ed3be09039bf44e85f2082329cb27ae4c45541c81; \
-    curl -fsSL https://deb.nodesource.com/setup_lts.x -o "$NODE_PPA"; \
-    echo "$NODE_SHA256 $NODE_PPA" | sha256sum --check --status --strict - || (\
-        echo -e "\n\nNODE CHECKSUM FAILED! Run tool/fetch-node-ppa-sum.sh for updated values.\n\n" && \
-        rm "$NODE_PPA" && \
-        exit 1 \
-    ); \
-    sh "$NODE_PPA" && rm "$NODE_PPA"; \
-    apt-get update -q && apt-get install -yq --no-install-recommends \
-      nodejs \
-    && rm -rf /var/lib/apt/lists/*
-# Ensure latest NPM
-RUN npm install -g npm
+
+RUN mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update -yq \
+    && apt-get install nodejs -yq \
+    && npm install -g npm # Ensure latest npm
 
 
 # ============== DEV/JEKYLL SETUP ==============
@@ -106,7 +101,7 @@ RUN BUNDLE_WITHOUT="test production" bundle install --jobs=4 --retry=2
 
 ENV NODE_ENV=development
 COPY package.json package-lock.json ./
-RUN npm install -g firebase-tools@11.26.0
+RUN npm install -g firebase-tools@12.8.1
 RUN npm install
 
 COPY ./ ./
@@ -164,7 +159,7 @@ RUN bundle exec jekyll build --config $BUILD_CONFIGS
 
 # ============== DEPLOY to FIREBASE ==============
 FROM build as deploy
-RUN npm install -g firebase-tools@11.26.0
+RUN npm install -g firebase-tools@12.8.1
 ARG FIREBASE_TOKEN
 ENV FIREBASE_TOKEN=$FIREBASE_TOKEN
 ARG FIREBASE_PROJECT=default

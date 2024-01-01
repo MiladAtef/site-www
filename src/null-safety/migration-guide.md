@@ -3,11 +3,13 @@ title: Migrating to null safety
 description: How to move your existing Dart code to the world of null safety
 ---
 
+{% include yt_shims.liquid %}
+
 {{site.alert.version-note}}
   Dart 2.19 is the final release that supports null-safety migration,
   including the `dart migrate` tool.
   To migrate your package to null safety,
-  use the latest Dart 2.19 SDK.
+  use the Dart 2.19.6 SDK.
   To learn more,
   see [Dart 3 and null safety](/null-safety#dart-3-and-null-safety).
 {{site.alert.end}}
@@ -36,9 +38,15 @@ Here are the basic steps for migrating each package that you own:
   make sure that all of your dependencies are ready.
 {{site.alert.end}}
 
-For an informal look at the experience of using the migration tool, watch this video:
+To get an informal look at the experience of using the migration tool,
+watch this video:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eBr5tlumwlg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe
+  {{yt-std-size}}
+  title="Learn about the null-safety migration tool"
+  src="{{yt-embed}}/eBr5tlumwlg"
+  {{yt-set}}>
+</iframe>
 
 [null safety]: /null-safety
 [Gradual null safety migration for large Dart projects]: https://medium.com/dartlang/gradual-null-safety-migration-for-large-dart-projects-85acb10b64a9
@@ -51,7 +59,7 @@ with the leaves of the dependency graph being migrated first.
 For example, if package C depends on package B, which depends on package A,
 then A should be migrated to null safety first, then B, then C.
 
-![Illustration of C/B/A sentence](/null-safety/null-safety-migration-order.png){:width="454px"}<br>
+![Illustration of C/B/A sentence](/assets/img/null-safety/null-safety-migration-order.png){:width="454px"}<br>
 
 Although you [_can_ migrate][Unsound null safety]
 before your dependencies support null safety,
@@ -77,12 +85,12 @@ The instructions assume your code is under **source control**,
 so that you can easily undo any changes.
 
 <a id="switch-to-the-latest-stable-dart-release"></a>
-### Switch to the latest Dart 2.19 release
+### Switch to the Dart 2.19.6 release
 
-Switch to the latest **Dart 2.19 release** of the Dart SDK. 
-This is included in the Flutter 3.7 SDK.
+Switch to the **2.19.6 release** of the Dart SDK. 
+This is included in the Flutter 3.7.12 SDK.
 
-Check that you have Dart 2.19:
+Check that you have Dart 2.19.6:
 
 ```terminal
 $ dart --version
@@ -116,7 +124,7 @@ null-safe releases, if they exist.
 Here's an example of the output for a simple package.
 The green checkmarked version for each package supports null safety:
 
-![Output of dart pub outdated](/null-safety/pub-outdated-output.png)
+![Output of dart pub outdated](/assets/img/null-safety/pub-outdated-output.png)
 
 The output shows that all of the package's dependencies
 have resolvable prereleases that support null safety.
@@ -133,8 +141,8 @@ You can find contact details on the package page on [pub.dev][].
 Before migrating your package's code,
 update its dependencies to null-safe versions:
 
-1. Run `dart pub upgrade --null-safety` to upgrade to the latest versions
-   supporting null safety.
+1. Run `dart pub upgrade --null-safety` to upgrade to the
+   latest versions supporting null safety.
    **Note:** This command changes your `pubspec.yaml` file.
 
 2. Run `dart pub get`.
@@ -179,7 +187,7 @@ adding [hint markers][] to your Dart code.
 
 Before starting the tool, make sure you're ready:
 
-* Use the latest 2.19 release of the Dart SDK.
+* Use the 2.19.6 release of the Dart SDK.
 * Use `dart pub outdated --mode=null-safety` to make sure that
   all dependencies are null safe and up-to-date.
   
@@ -203,7 +211,7 @@ Visit that URL in a Chrome browser
 to see an interactive UI
 where you can guide the migration process:
 
-![Screenshot of migration tool](/null-safety/migration-tool.png)
+![Screenshot of migration tool](/assets/img/null-safety/migration-tool.png)
 
 For every variable and type annotation,
 you can see what nullability the tool infers.
@@ -430,7 +438,7 @@ $ dart pub get
 $ dart analyze     # or `flutter analyze`
 ```
 
-[static analysis]: /guides/language/analysis-options
+[static analysis]: /tools/analysis
 
 
 ## 4. Test {#step4-test}

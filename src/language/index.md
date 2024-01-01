@@ -14,8 +14,9 @@ To learn more about the Dart language,
 visit the in-depth, individual topic pages
 listed under **Language** in the left side menu.
 
-For coverage of Dart's core libraries, check out the [library tour](/guides/libraries/library-tour).
-You can also visit the [Dart cheatsheet codelab](/codelabs/dart-cheatsheet),
+For coverage of Dart's core libraries,
+check out the [core library documentation](/libraries).
+You can also try the [Dart cheatsheet codelab](/codelabs/dart-cheatsheet),
 for a more hands-on introduction.
 
 
@@ -492,7 +493,7 @@ keep these facts and concepts in mind:
     is inferred to be of type `int`.
 
 -   If you enable [null safety][ns],
-    variables can’t contain `null` unless you say they can.
+    variables can't contain `null` unless you say they can.
     You can make a variable nullable by
     putting a question mark (`?`) at the end of its type.
     For example, a variable of type `int?` might be an integer,
@@ -521,8 +522,8 @@ keep these facts and concepts in mind:
     tied to a class or object (static and instance variables). Instance
     variables are sometimes known as *fields* or *properties*.
 
--   Unlike Java, Dart doesn’t have the keywords `public`, `protected`,
-    and `private`. If an identifier starts with an underscore (`_`), it’s
+-   Unlike Java, Dart doesn't have the keywords `public`, `protected`,
+    and `private`. If an identifier starts with an underscore (`_`), it's
     private to its library. For details, see
     [Libraries and imports][].
 
@@ -539,7 +540,7 @@ keep these facts and concepts in mind:
 
 -   Dart tools can report two kinds of problems: _warnings_ and _errors_.
     Warnings are just indications that your code might not work, but
-    they don’t prevent your program from executing. Errors can be either
+    they don't prevent your program from executing. Errors can be either
     compile-time or run-time. A compile-time error prevents the code
     from executing at all; a run-time error results in an
     [exception][] being raised while the code executes.
@@ -547,10 +548,10 @@ keep these facts and concepts in mind:
 
 ## Additional resources
 
-More code samples are in the the
-[library tour](/guides/libraries/library-tour)
-and the [Dart API reference,]({{site.dart-api}}).
-This site’s code follows the conventions in the
+You can find more documentation and code samples in the
+[core library documentation](/libraries/dart-core)
+and the [Dart API reference]({{site.dart-api}}).
+This site's code follows the conventions in the
 [Dart style guide](/effective-dart/style).
 
 [Dart language specification]: /guides/language/spec

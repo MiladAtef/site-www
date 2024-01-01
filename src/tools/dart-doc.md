@@ -46,7 +46,7 @@ $ dart help doc
 ```
 
 [documentation comments]: /language/comments#documentation-comments
-[effective doc]: /effective-dart/documentation
+[effective doc]: /effective-dart/documentation#doc-comments
 [Markdown]: {{site.pub-pkg}}/markdown
 
 {% comment %}

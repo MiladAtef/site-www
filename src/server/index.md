@@ -33,7 +33,7 @@ that can help you develop command-line and server apps.
 
 ## Frameworks
 
-Server-side frameworks written in Dart:
+Server-side frameworks written in Dart include:
 
 [Serverpod](https://serverpod.dev)
 : A scalable app server that supports code generation,
@@ -45,6 +45,8 @@ Server-side frameworks written in Dart:
 More tools
 : The [Tools](/tools) page links to generally useful tools,
   such as Dart plugins for your favorite IDE or editor.
+
+For additional options, see [#server packages on pub.dev]({{site.pub}}/packages?q=topic%3Aserver).
 
 ## Tutorials
 
@@ -67,7 +69,7 @@ You might find the following tutorials helpful.
 [Dart API]({{site.dart-api}}/{{site.data.pkg-vers.SDK.channel}})
 : API reference for dart:* libraries.
 
-[dart:io section of the library tour](/guides/libraries/library-tour#dartio)
+[dart:io documentation](/libraries/dart-io)
 : Shows how to use the major features of the dart:io library.
   You can use the dart:io library in command-line scripts, servers, and
   non-web [Flutter apps.]({{site.flutter}})

@@ -51,7 +51,7 @@ var list = [
 
 Lists use zero-based indexing, where 0 is the index of the first value
 and `list.length - 1` is the index of the last value. 
-You can get a list’s length using the `.length` property
+You can get a list's length using the `.length` property
 and access a list's values using the subscript operator (`[]`):
 
 <?code-excerpt "misc/test/language_tour/built_in_types_test.dart (list-indexing)"?>
@@ -74,7 +74,7 @@ var constantList = const [1, 2, 3];
 ```
 
 For more information about lists, refer to the Lists section of the
-[Library tour](/guides/libraries/library-tour#lists).
+[`dart:core` documentation](/libraries/dart-core#lists).
 
 ## Sets
 
@@ -148,7 +148,7 @@ final constantSet = const {
 ```
 
 For more information about sets, refer to the Sets section of the
-[Library tour](/guides/libraries/library-tour#sets).
+[`dart:core` documentation](/libraries/dart-core#sets).
 
 ## Maps
 
@@ -220,7 +220,7 @@ var gifts = {'first': 'partridge'};
 assert(gifts['first'] == 'partridge');
 ```
 
-If you look for a key that isn’t in a map, you get `null` in return:
+If you look for a key that isn't in a map, you get `null` in return:
 
 <?code-excerpt "misc/test/language_tour/built_in_types_test.dart (map-missing-key)"?>
 ```dart
@@ -252,7 +252,7 @@ final constantMap = const {
 ```
 
 For more information about maps, refer to the Maps section of the
-[Library tour](/guides/libraries/library-tour#maps).
+[`dart:core` documentation](/libraries/dart-core#maps).
 
 ## Operators
 
@@ -319,7 +319,7 @@ assert(listOfStrings[1] == '#1');
 For more details and examples of using collection `if` and `for`, see the
 [control flow collections proposal.][collections proposal]
 
-[collections]: /guides/libraries/library-tour#collections
+[collections]: /libraries/dart-core#collections
 [type inference]: /language/type-system#type-inference
 [`List`]: {{site.dart-api}}/{{site.data.pkg-vers.SDK.channel}}/dart-core/List-class.html
 [`Map`]: {{site.dart-api}}/{{site.data.pkg-vers.SDK.channel}}/dart-core/Map-class.html

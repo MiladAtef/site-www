@@ -2,7 +2,7 @@
 title: Get the Dart SDK
 description: Get the libraries and command-line tools that you need to develop Dart web, command-line, and server apps.
 js:
-- url: /get-dart/archive/assets/install.js
+- url: /assets/js/get-dart/install.js
   defer: true
 ---
 
@@ -57,8 +57,7 @@ The Dart SDK is supported on Windows, Linux, and macOS.
 
 * **Supported versions:** Windows 10 and 11.
 * **Supported architectures:** x64, IA32, ARM64.<br>
-  Support for ARM64 is experimental,
-  and is available only in the dev channel.
+  Support for ARM64 is in preview, and is available only in the dev and beta channels.
 
 ### Linux
 
@@ -66,18 +65,13 @@ The Dart SDK is supported on Windows, Linux, and macOS.
 * **Supported architectures:** x64, IA32, ARM64, ARM, RISC-V (RV64GC).<br>
   Support for RISC-V is in preview, and is available only in the dev and beta channels.
 
-{{site.alert.note}}
-  The arm support requires glibc 2.23 or newer due to a
-  [dynamic linker bug](https://sourceware.org/bugzilla/show_bug.cgi?id=14341).
-{{site.alert.end}}
-
 ### macOS
 
 * **Supported versions:** Latest three major versions.
-Dart supports the following macOS versions as of November 2022:
-  - macOS 11 (Big Sur)
+Dart supports the following macOS versions as of November 2023:
   - macOS 12 (Monterey)
   - macOS 13 (Ventura)
+  - macOS 14 (Sonoma)
 * **Supported architectures:** x64, ARM64.
 
 ## About release channels and version strings {#release-channels}
@@ -119,9 +113,8 @@ using [a package manager][] or [Dart Docker image][], or
 by [downloading the SDK as a zip file][].
 
 [SDK constraints]: /tools/pub/pubspec#sdk-constraints
-[Dart 2]: /dart-2
 [build the SDK from source]: https://github.com/dart-lang/sdk/wiki/Building
-[Dart libraries]: /guides/libraries/library-tour
+[Dart libraries]: /libraries
 [Dart Docker image]: https://hub.docker.com/_/dart
 [downloading the SDK as a zip file]: /get-dart/archive
 [Debian stable]: https://www.debian.org/releases
